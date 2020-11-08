@@ -1,0 +1,25 @@
+{
+  "name": "back",
+  "version": "0.1.0",
+  "description": "Node.js backend project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leandro Drudi",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.12",
+    "mongoose-unique-validator": "^2.0.3",
+    "nodemon": "^2.0.6"
+  }
+}
