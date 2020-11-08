@@ -1,33 +1,23 @@
 import React from 'react';
 import { Layout, Card } from 'antd';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import LoginForm from '../../../components/Forms/AuthForms/LoginForm';
-import AuthService from '../../../services/auth-service';
+import { useAuth } from '../../../services/auth-service';
 import '../auth.css';
 
 const Login = () => {
+  let history = useHistory();
+  let location = useLocation();
+  const auth = useAuth();
+
+  let { from } = location.state || { from: { pathname: '/' } };
+
   const onSubmit = (input) => {
     const { email, password } = input;
-    AuthService.login(email, password).then(
-      () => {
-        // props.history.push('/home');
-        // window.location.reload();
-        console.log('LOGUEADO!');
-      },
-      (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        console.error('NO LOGUEADO', resMessage);
-
-        // setLoading(false);
-        // setMessage(resMessage);
-      }
-    );
+    auth.login(email, password, () => {
+      history.replace(from);
+    });
   };
 
   return (

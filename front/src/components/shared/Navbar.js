@@ -1,52 +1,35 @@
-import React, { Component } from 'react';
-import { Layout, Menu, Avatar } from 'antd';
-import { LogoutOutlined } from '@ant-design/icons';
+import React from 'react';
+import { Layout, Button, Avatar } from 'antd';
+import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 
-import AuthService from '../../services/auth-service';
+import { useAuth } from '../../services/auth-service';
 import './navbar.css';
 
-class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userImg: '',
-    };
-  }
-  componentDidMount() {
-    const user = AuthService.getCurrentUser();
-    if (user && user.img) {
-      this.setState({ userImg: user.img });
-    } else {
-      this.setState({
-        userImg:
-          'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      });
-    }
-  }
-
-  handleClick() {
-    AuthService.logout();
-  }
-
-  render() {
-    const { userImg } = this.state;
-    return (
-      <Layout.Header>
-        <div className="logo" />
+const Navbar = () => {
+  const auth = useAuth();
+  return (
+    <Layout.Header>
+      <div className="logo" />
+      {auth.user && (
         <div className="user-options-container">
           <div className="user-options-avatar">
-            <Avatar src={userImg} />
+            {auth.user.img ? (
+              <Avatar src={auth.user.img} />
+            ) : (
+              <Avatar icon={<UserOutlined />} />
+            )}
           </div>
-          <Menu theme="dark" mode="horizontal" onClick={this.handleClick}>
-            <Menu.Item key="log-out">
-              <LogoutOutlined />
-              <span>Log out</span>
-            </Menu.Item>
-          </Menu>
+          <Button
+            type="primary"
+            icon={<LogoutOutlined />}
+            onClick={() => auth.logout()}
+          >
+            Log out
+          </Button>
         </div>
-      </Layout.Header>
-    );
-  }
-}
+      )}
+    </Layout.Header>
+  );
+};
 
 export default Navbar;

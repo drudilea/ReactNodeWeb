@@ -18,9 +18,9 @@ const login = async (req, res = response) => {
     // Validar contraseña
     const validPassword = bcrypt.compareSync(password, userDB.password);
     if (!validPassword) {
-      return res.status(404).json({
+      return res.status(401).json({
         ok: false,
-        msg: 'Invalid password',
+        msg: 'Invalid email or password',
       });
     }
 
@@ -79,6 +79,22 @@ const register = async (req, res = response) => {
   }
 };
 
+const validateToken = async (req, res = response) => {
+  const uidFromToken = req.uid;
+  const uidFromBody = req.query.uid;
+
+  if (uidFromToken !== uidFromBody) {
+    return res.status(401).json({
+      ok: false,
+      msg: 'Token and user not match',
+    });
+  }
+
+  res.json({
+    ok: true,
+  });
+};
+
 const renewToken = async (req, res = response) => {
   const uid = req.uid;
 
@@ -95,4 +111,5 @@ module.exports = {
   login,
   register,
   renewToken,
+  validateToken,
 };

@@ -1,12 +1,13 @@
-import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import { AuditOutlined, PictureOutlined } from '@ant-design/icons';
 
 import './navbar.css';
 
 const Sidebar = () => {
-  let match = useRouteMatch();
+  let location = useLocation();
+  const [locationKey, setLocationKey] = useState(location.pathname);
   return (
     <Layout.Sider
       width={200}
@@ -15,17 +16,14 @@ const Sidebar = () => {
     >
       <Menu
         mode="inline"
-        defaultSelectedKeys={['posts']}
+        defaultSelectedKeys={[locationKey]}
         style={{ borderRight: 0 }}
       >
-        {/* <Menu.Item key="profile" icon={<UserOutlined />}>
-          <Link to={'/home/profile'}>Profile</Link>
-        </Menu.Item> */}
-        <Menu.Item key="posts" icon={<AuditOutlined />}>
-          <Link to={`${match.url}/ext/posts`}>Posts</Link>
+        <Menu.Item key="/home/ext/posts" icon={<AuditOutlined />}>
+          <Link to={`/home/ext/posts`}>Posts</Link>
         </Menu.Item>
-        <Menu.Item key="photos" icon={<PictureOutlined />}>
-          <Link to={`${match.url}/ext/photos`}>Photos</Link>
+        <Menu.Item key="/home/ext/photos" icon={<PictureOutlined />}>
+          <Link to={`/home/ext/photos`}>Photos</Link>
         </Menu.Item>
       </Menu>
     </Layout.Sider>

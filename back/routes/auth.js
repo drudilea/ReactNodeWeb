@@ -3,7 +3,12 @@
 */
 
 const { Router } = require('express');
-const { login, register, renewToken } = require('../controllers/auth');
+const {
+  login,
+  register,
+  renewToken,
+  validateToken,
+} = require('../controllers/auth');
 const { check } = require('express-validator');
 const { filedsValidation } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
@@ -32,6 +37,9 @@ router.post(
   ],
   register
 );
+
+// Validar JWT
+router.get('/validate', validarJWT, validateToken);
 
 // Actualizar JWT
 router.get('/renew', validarJWT, renewToken);
