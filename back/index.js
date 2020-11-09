@@ -32,7 +32,7 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/json-placeholder', require('./routes/json-placeholder'));
 
 /*PRODUCTION CONFIG*/
-if (dev) {
+if (!dev) {
   // app.disable('x-powered-by');
   app.use(morgan('common'));
   app.use(express.static(path.resolve(__dirname, '../front/build')));
