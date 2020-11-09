@@ -1,6 +1,7 @@
 import React, { useState, useContext, createContext, useEffect } from 'react';
 import axios from 'axios';
 import { Redirect, Route } from 'react-router-dom';
+import { message } from 'antd';
 import authHeader from './auth-header';
 
 const API_URL = '/api/auth';
@@ -65,7 +66,10 @@ function useProvideAuth() {
           cb();
         }
       })
-      .catch((err) => console.log('ERROR while Login', err.response));
+      .catch((err) => {
+        console.log('ERROR while Login', err.response);
+        message.error(err.response.data.msg);
+      });
   };
 
   const register = async (name, email, password, cb) => {
@@ -82,6 +86,10 @@ function useProvideAuth() {
           setUser(userFinal);
         }
         cb();
+      })
+      .catch((err) => {
+        console.log('ERROR while Register', err.response);
+        message.error(err.response.data.msg);
       });
   };
 

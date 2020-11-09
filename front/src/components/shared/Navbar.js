@@ -4,12 +4,15 @@ import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 
 import { useAuth } from '../../services/auth-service';
 import './navbar.css';
+import logo from '../../assets/images/logo.svg';
 
 const Navbar = () => {
   const auth = useAuth();
   return (
     <Layout.Header>
-      <div className="logo" />
+      <div className="logo-container">
+        <img src={logo} className="logo" alt="Company Logo" />
+      </div>
       {auth.user && (
         <div className="user-options-container">
           <div className="user-options-avatar">

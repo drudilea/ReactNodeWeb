@@ -3,17 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import { AuditOutlined, PictureOutlined } from '@ant-design/icons';
 
-import './navbar.css';
+import './sidebar.css';
 
 const Sidebar = () => {
   let location = useLocation();
   const [locationKey, setLocationKey] = useState(location.pathname);
   return (
-    <Layout.Sider
-      width={200}
-      style={{ height: 'fit-content' }}
-      className="site-layout-background"
-    >
+    <Layout.Sider className="sidebar-container">
       <Menu
         mode="inline"
         defaultSelectedKeys={[locationKey]}

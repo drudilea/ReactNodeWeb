@@ -5,7 +5,7 @@ import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 
 import './authForms.css';
 
-const RegisterForm = ({ onSubmit }) => {
+const RegisterForm = ({ onSubmit, loading }) => {
   return (
     <Form name="register-form" className="auth-form" onFinish={onSubmit}>
       <Form.Item
@@ -83,7 +83,12 @@ const RegisterForm = ({ onSubmit }) => {
       </Form.Item>
 
       <Form.Item className="button-container">
-        <Button type="primary" htmlType="submit" className="auth-form-button">
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={loading}
+          className="auth-form-button"
+        >
           Register
         </Button>
         <span className="auth-link">

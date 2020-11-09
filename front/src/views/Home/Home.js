@@ -12,6 +12,8 @@ import Posts from './Posts/Posts';
 import Photos from './Photos/Photos';
 import { useAuth } from '../../services/auth-service';
 
+import './home.css';
+
 const Home = () => {
   const location = useLocation();
   let match = useRouteMatch();
@@ -23,13 +25,7 @@ const Home = () => {
           <Sidebar />
 
           <Layout>
-            <Layout.Content
-              style={{
-                padding: 24,
-                margin: 0,
-                minHeight: 280,
-              }}
-            >
+            <Layout.Content className="content-container">
               <Switch>
                 <Route
                   exact

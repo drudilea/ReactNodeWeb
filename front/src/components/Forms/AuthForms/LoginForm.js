@@ -5,7 +5,7 @@ import { MailOutlined, LockOutlined } from '@ant-design/icons';
 
 import './authForms.css';
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, loading }) => {
   return (
     <Form name="login-form" className="auth-form" onFinish={onSubmit}>
       <Form.Item
@@ -43,7 +43,12 @@ const LoginForm = ({ onSubmit }) => {
       </Form.Item>
 
       <Form.Item className="button-container">
-        <Button type="primary" htmlType="submit" className="auth-form-button">
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={loading}
+          className="auth-form-button"
+        >
           Log in
         </Button>
         <span className="auth-link">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout, Card } from 'antd';
 import { useHistory } from 'react-router-dom';
 
@@ -9,17 +9,25 @@ import '../auth.css';
 const Register = () => {
   let history = useHistory();
   const auth = useAuth();
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = (input) => {
+    setLoading(true);
+
     const { name, email, password } = input;
-    auth.register(name, email, password, () => {
-      history.push('/');
-    });
+    const result = auth
+      .register(name, email, password, () => {
+        history.push('/');
+      })
+      .then(() => {
+        setLoading(false);
+      });
   };
 
   return (
     <Layout.Content className="auth-container">
       <Card title="Sign up">
-        <RegisterForm onSubmit={onSubmit}></RegisterForm>
+        <RegisterForm onSubmit={onSubmit} loading={loading}></RegisterForm>
       </Card>
     </Layout.Content>
   );
