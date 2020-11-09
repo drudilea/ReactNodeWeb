@@ -15,7 +15,7 @@ const Register = () => {
     setLoading(true);
 
     const { name, email, password } = input;
-    const result = auth
+    auth
       .register(name, email, password, () => {
         history.push('/');
       })

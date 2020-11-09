@@ -44,7 +44,7 @@ const Home = () => {
             </Layout.Content>
 
             <Layout.Footer style={{ textAlign: 'center' }}>
-              Conexa App ©2020 Created by Leandro Drudi
+              Creative Coders App ©2020 Created by Leandro Drudi
             </Layout.Footer>
           </Layout>
         </Layout>
