@@ -2,6 +2,8 @@
 
 > Generic project with React frontend, Node backend and MongoDB as database
 
+> Upgrade Heroku-18 stack to Heroku-22
+
 ---
 
 ## Initialize project
